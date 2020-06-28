@@ -10,10 +10,8 @@ services:
   - docker
 
 install:
-  - ":"
-
-script:
-  - docker-compose -f tests/docker-compose.yml up --exit-code-from daphne
+  #- docker build -f docker/tests.Dockerfile -t raveberry-test .
+  #- docker-compose -f tests/docker-compose.yml up --exit-code-from daphne
   - yarn install
   - scripts/clean_libs.sh
   - pip install -r requirements/dev.txt
