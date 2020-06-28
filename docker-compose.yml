@@ -1,7 +1,6 @@
 version: '3'
 
 volumes:
-  static-files:
   songs-cache:
     # If you want to access downloaded files on your host system,
     # uncomment the following lines and choose a folder.
@@ -45,7 +44,6 @@ services:
     expose:
       - 9000
     volumes:
-      - static-files:/opt/raveberry/static
       - songs-cache:/Music/raveberry
     depends_on:
       - db
@@ -56,8 +54,6 @@ services:
     image: raveberry/raveberry-nginx
     ports:
       - "80:80"
-    volumes:
-      - static-files:/usr/share/nginx/static
     depends_on:
       - daphne
     restart: always
