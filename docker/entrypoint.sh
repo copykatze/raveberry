@@ -2,7 +2,7 @@
 
 set -e
 
-DJANGO_MOCK=1 python manage.py migrate --noinput
+DJANGO_MOCK=1 DJANGO_POSTGRES=1 python manage.py migrate --noinput
 scripts/create_users.sh
 
 echo "Starting: ${@}"

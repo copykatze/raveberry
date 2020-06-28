@@ -1,5 +1,5 @@
 #!/bin/bash
-DJANGO_MOCK=1 python3 manage.py shell <<-EOF
+DJANGO_MOCK=1 DJANGO_POSTGRES=1 python3 manage.py shell <<-EOF
 	from django.contrib.auth.models import User
 	User.objects.all().delete()
 	User.objects.create_superuser('admin', email='', password='$ADMIN_PASSWORD')

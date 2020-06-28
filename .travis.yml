@@ -16,7 +16,7 @@ script:
   - yarn install
   - scripts/clean_libs.sh
   - pip install -r requirements/dev.txt
-  - DJANGO_DEBUG=1 DJANGO_MOCK=1 python manage.py compilescss
+  - DJANGO_MOCK=1 python manage.py compilescss
   - mkdir raveberry
   # move all files except those needed for packaging
   - mv `\ls -A1 | grep -v -E '(setup.py|MANIFEST.in|raveberry)'` raveberry
