@@ -44,8 +44,6 @@ class Playback:
         self.musiq = musiq
 
         self.queue = models.QueuedSong.objects
-        self.queue.delete_placeholders()
-        Playback.queue_semaphore = Semaphore(self.queue.count())
         self.alarm_playing: Event = Event()
         self.running = True
 
@@ -53,6 +51,9 @@ class Playback:
         self.player_lock = Lock()
 
     def start(self) -> None:
+        self.queue.delete_placeholders()
+        Playback.queue_semaphore = Semaphore(self.queue.count())
+
         with self.mopidy_command(important=True):
             self.player.playback.stop()
             self.player.tracklist.clear()
