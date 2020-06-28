@@ -4,7 +4,7 @@ RUN pip install -U youtube-dl &&\
 	pip install raveberry --no-deps --target /opt &&\
 	rm -rf ~/.cache/pip
 
-COPY docker/entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 
 WORKDIR /opt/raveberry
 
