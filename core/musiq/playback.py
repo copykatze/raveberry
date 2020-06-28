@@ -51,14 +51,13 @@ class Playback:
 
         self.player: MopidyAPI = MopidyAPI(host=settings.MOPIDY_HOST)
         self.player_lock = Lock()
+
+    def start(self) -> None:
         with self.mopidy_command(important=True):
             self.player.playback.stop()
             self.player.tracklist.clear()
             # make songs disappear from tracklist after being played
             self.player.tracklist.set_consume(True)
-
-    def start(self) -> None:
-        """Starts the loop of the player."""
         self._loop()
 
     def progress(self) -> float:
@@ -311,7 +310,7 @@ class Playback:
         if self.running:
             return
         self.running = True
-        self.start()
+        self._loop()
 
     def stop_loop(self) -> None:
         """Stops the playback main loop, only used for tests."""
