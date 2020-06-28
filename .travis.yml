@@ -25,6 +25,9 @@ script:
   # We need to use --force as COMPRESS_OFFLINE is not enabled.
   # Online compression is still needed for inline javascript.
   - DJANGO_DEBUG=1 DJANGO_MOCK=1 python manage.py compress --force
+  # copy static admin files into the folder
+  - DJANGO_PATH=$(python -c 'import django, os; print(f"{os.path.dirname(django.__file__)}/contrib/admin/static/admin")')
+  - cp -r "$DJANGO_PATH" static/admin
   # update docker
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
