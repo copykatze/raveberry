@@ -1,10 +1,10 @@
 FROM raveberry/raveberry-dependencies
 
 RUN pip install -U youtube-dl &&\
-	pip install raveberry --no-deps --target /opt &&\
 	rm -rf ~/.cache/pip
 
-COPY entrypoint.sh /entrypoint.sh
+COPY . /opt/raveberry
+COPY docker/entrypoint.sh /entrypoint.sh
 
 WORKDIR /opt/raveberry
 
